@@ -1,7 +1,11 @@
 import React from "react";
 
 const Sortbar = props => {
-  return <div></div>;
+  return (
+    <nav className="sortbar">
+      <hr />
+    </nav>
+  );
 };
 
 export default Sortbar;
