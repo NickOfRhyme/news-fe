@@ -2,11 +2,17 @@ import React from "react";
 import ArticleCard from "./ArticleCard";
 
 const ArticleList = props => {
-  const { articles } = props;
+  const { articles, topicHead } = props;
   return (
     <ul>
       {articles.map(article => {
-        return <ArticleCard {...article} key={article.article_id} />;
+        return (
+          <ArticleCard
+            {...article}
+            key={article.article_id}
+            topicHead={topicHead}
+          />
+        );
       })}
     </ul>
   );

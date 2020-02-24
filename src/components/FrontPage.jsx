@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Sortbar from "./Sortbar";
 import ArticleList from "./ArticleList";
+import * as api from "../api";
 
 class FrontPage extends Component {
   state = {
@@ -40,14 +41,18 @@ class FrontPage extends Component {
     const { articles } = this.state;
 
     return (
-      <section>
+      <main>
         <Sortbar />
-        <ArticleList articles={articles} />
-      </section>
+        <ArticleList articles={articles} topicHead={true} />
+      </main>
     );
   }
 
-  sortArticles = (sort_by, order) => {};
+  componentDidMount() {
+    api.getArticles().then(articles => {
+      this.setState(articles);
+    });
+  }
 }
 
 export default FrontPage;
