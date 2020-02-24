@@ -6,7 +6,7 @@ function CommentList(props) {
   return (
     <ul>
       {comments.map(comment => {
-        return <CommentCard {...comment} />;
+        return <CommentCard {...comment} key={comment.comment_id} />;
       })}
     </ul>
   );
