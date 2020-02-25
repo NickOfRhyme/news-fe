@@ -1,5 +1,6 @@
 import React from "react";
 import DeleteCommentBtn from "./DeleteCommentBtn";
+import VoteForm from "./VoteForm";
 
 function CommentCard(props) {
   const {
@@ -9,13 +10,11 @@ function CommentCard(props) {
     body,
     user,
     comment_id,
-    removeComment
+    removeComment,
+    voteComment
   } = props;
 
   const thisUsersComment = user === author;
-
-  const voteCountMsg =
-    votes > 1 ? `${votes} votes` : votes === 1 ? "1 vote" : "no votes";
 
   const authorMsg = thisUsersComment ? `${user} - that's you!` : author;
 
@@ -27,7 +26,11 @@ function CommentCard(props) {
         <h4>{authorMsg}</h4>
         <p>{date}</p>
         <p>{body}</p>
-        <p>{voteCountMsg}</p>
+        <VoteForm
+          votes={votes}
+          comment_id={comment_id}
+          voteFunc={voteComment}
+        />
         {thisUsersComment && (
           <DeleteCommentBtn
             comment_id={comment_id}

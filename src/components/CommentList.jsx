@@ -2,7 +2,7 @@ import React from "react";
 import CommentCard from "./CommentCard";
 
 function CommentList(props) {
-  const { comments, user, removeComment } = props;
+  const { comments, user, removeComment, voteComment } = props;
   return (
     <ul>
       {comments.map(comment => {
@@ -12,6 +12,7 @@ function CommentList(props) {
             key={comment.comment_id}
             user={user}
             removeComment={removeComment}
+            voteComment={voteComment}
           />
         );
       })}

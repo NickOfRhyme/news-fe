@@ -1,7 +1,17 @@
 import React from "react";
+import VoteForm from "./VoteForm";
 
 function ArticleFullView(props) {
-  const { title, body, votes, author, created_at, comment_count } = props;
+  const {
+    title,
+    body,
+    votes,
+    article_id,
+    author,
+    created_at,
+    comment_count,
+    voteArticle
+  } = props;
 
   const commentCountMsg =
     comment_count > 1
@@ -10,9 +20,6 @@ function ArticleFullView(props) {
       ? "1 comment"
       : "no comments";
 
-  const voteCountMsg =
-    votes > 1 ? `${votes} votes` : votes === 1 ? "1 vote" : "no votes";
-
   return (
     <section>
       <h2>{title}</h2>
@@ -20,7 +27,7 @@ function ArticleFullView(props) {
       <p>{created_at}</p>
       <p>{body}</p>
       <p>{commentCountMsg}</p>
-      <p>{voteCountMsg}</p>
+      <VoteForm voteFunc={voteArticle} article_id={article_id} votes={votes} />
     </section>
   );
 }

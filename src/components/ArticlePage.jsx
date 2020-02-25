@@ -14,11 +14,17 @@ class ArticlePage extends Component {
   render() {
     const { comments, article } = this.state;
     const { article_id, user } = this.props;
-    const { addComment, fetchComments, removeComment } = this;
+    const {
+      addComment,
+      fetchComments,
+      removeComment,
+      voteComment,
+      voteArticle
+    } = this;
 
     return (
       <main>
-        <ArticleFullView {...article} />
+        <ArticleFullView {...article} voteArticle={voteArticle} />
         <hr />
         <Sortbar sortingFunc={fetchComments} />
         <hr />
@@ -26,6 +32,7 @@ class ArticlePage extends Component {
           comments={comments}
           user={user}
           removeComment={removeComment}
+          voteComment={voteComment}
         />
         <hr />
         <ReplyForm
@@ -67,12 +74,37 @@ class ArticlePage extends Component {
 
   removeComment = comment_id => {
     api.deleteComment(comment_id).then(response => {
-      console.log(response);
       this.setState(currentState => {
         return {
           comments: currentState.comments.filter(comment => {
             return comment.comment_id !== comment_id;
           })
+        };
+      });
+    });
+  };
+
+  voteComment = (comment_id, vote) => {
+    api.patchComment(comment_id, vote).then(response => {
+      this.setState(currentState => {
+        return {
+          comments: currentState.comments.map(comment => {
+            if (comment.comment_id === comment_id) comment.votes += vote;
+            return comment;
+          })
+        };
+      });
+    });
+  };
+
+  voteArticle = (article_id, vote) => {
+    api.patchArticle(article_id, vote).then(response => {
+      this.setState(currentState => {
+        return {
+          article: {
+            ...currentState.article,
+            votes: currentState.article.votes + vote
+          }
         };
       });
     });

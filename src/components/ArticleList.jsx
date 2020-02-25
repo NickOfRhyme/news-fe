@@ -2,7 +2,7 @@ import React from "react";
 import ArticleCard from "./ArticleCard";
 
 const ArticleList = props => {
-  const { articles, topicHead } = props;
+  const { articles, topicHead, voteArticle } = props;
   return (
     <ul>
       {articles.map(article => {
@@ -11,6 +11,7 @@ const ArticleList = props => {
             {...article}
             key={article.article_id}
             topicHead={topicHead}
+            voteArticle={voteArticle}
           />
         );
       })}
