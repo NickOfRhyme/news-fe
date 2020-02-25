@@ -10,20 +10,25 @@ class FrontPage extends Component {
 
   render() {
     const { articles } = this.state;
+    const { fetchArticles } = this;
 
     return (
       <main>
-        <Sortbar />
+        <Sortbar sortingFunc={fetchArticles} incCommentOption={true} />
         <ArticleList articles={articles} topicHead={true} />
       </main>
     );
   }
 
   componentDidMount() {
-    api.getArticles().then(articles => {
+    this.fetchArticles();
+  }
+
+  fetchArticles = (sort_by, order) => {
+    api.getArticles({ sort_by, order }).then(articles => {
       this.setState(articles);
     });
-  }
+  };
 }
 
 export default FrontPage;

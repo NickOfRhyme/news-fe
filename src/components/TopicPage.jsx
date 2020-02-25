@@ -9,22 +9,32 @@ class TopicPage extends Component {
   };
 
   render() {
+    const { fetchArticles } = this;
     const { topic } = this.props;
     const { articles } = this.state;
 
     return (
       <main>
-        <Sortbar />
+        <Sortbar
+          sortingFunc={fetchArticles}
+          incCommentOption={true}
+          topic={topic}
+        />
         <ArticleList articles={articles} />
       </main>
     );
   }
 
   componentDidMount() {
+    const { fetchArticles } = this;
     const { topic } = this.props;
-    api.getArticles({ topic }).then(articles => {
+    fetchArticles(topic);
+  }
+
+  fetchArticles = (topic, sort_by, order) => {
+    api.getArticles({ topic, sort_by, order }).then(articles => {
       this.setState(articles);
     });
-  }
+  };
 }
 export default TopicPage;
