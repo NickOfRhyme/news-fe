@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "@reach/router";
 import TopicNav from "./TopicNav";
 
-const Header = () => {
+const Header = props => {
+  console.log(props);
   return (
     <header>
       <h1>

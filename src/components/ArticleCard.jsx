@@ -18,7 +18,7 @@ function ArticleCard(props) {
 
   const isThisUsersArticle = user === author;
 
-  const authorMsg = isThisUsersArticle ? `${user} - that's you!` : author;
+  const authorMsg = isThisUsersArticle ? `YOU - ${user}` : author;
 
   const commentCountMsg =
     comment_count > 1
@@ -40,14 +40,15 @@ function ArticleCard(props) {
         </Link>
       )}
       <article className={styles.mainCard}>
-        <Link to={`/topics/${topic}/${article_id}`}>
-          <h3>{title}</h3>
-        </Link>
-        <p>{authorMsg}</p>
-        <p>{date}</p>
-        <p>{preview}</p>
-        <p>{commentCountMsg}</p>
-        <p>{voteCountMsg}</p>
+        <h3 className={styles.title}>
+          <Link to={`/topics/${topic}/${article_id}`}>{title}</Link>
+        </h3>
+
+        <p className={styles.author}>{authorMsg}</p>
+        <p className={styles.date}>{date}</p>
+        <p className={styles.cardBody}>{preview}</p>
+        <p className={styles.commentCount}>{commentCountMsg}</p>
+        <p className={styles.voteCount}>{voteCountMsg}</p>
       </article>
     </li>
   );

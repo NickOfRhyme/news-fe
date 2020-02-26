@@ -1,8 +1,8 @@
 import React from "react";
 
 function ErrorPage(props) {
-  const msg = props.err ? props.err.response.data : "Not found";
-  const status = props.err ? props.err.response.status : "404";
+  const msg = props.err !== undefined ? props.err.response.data : "Not found";
+  const status = props.err !== undefined ? props.err.response.status : "404";
   return (
     <main>
       <h1>Whoops!</h1>

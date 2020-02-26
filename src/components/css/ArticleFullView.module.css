@@ -1,0 +1,18 @@
+.wholeArticle {
+  background-color: hsl(00, 0%, 60%);
+  border-radius: 5px;
+  margin: 5px;
+  padding: 10px;
+  padding-top: 0;
+}
+
+.body {
+  max-width: 55em;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: hsl(00, 0%, 90%);
+}
+
+.author {
+  font-weight: bold;
+}

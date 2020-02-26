@@ -1,5 +1,6 @@
 import React from "react";
 import * as api from "../api";
+import styles from "./css/VoteForm.module.css";
 
 class VoteForm extends React.Component {
   state = {
@@ -22,15 +23,7 @@ class VoteForm extends React.Component {
     return (
       <>
         <button
-          onClick={() => {
-            updateVote(comment_id, article_id, 1);
-          }}
-          disabled={voteChange > 0}
-        >
-          +
-        </button>
-        {voteCountMsg}
-        <button
+          className={styles.button}
           onClick={() => {
             updateVote(comment_id, article_id, -1);
           }}
@@ -38,7 +31,17 @@ class VoteForm extends React.Component {
         >
           -
         </button>
-        {err && <p>{err}</p>}
+        <p className={styles.voteCount}>{voteCountMsg}</p>
+        <button
+          className={styles.button}
+          onClick={() => {
+            updateVote(comment_id, article_id, 1);
+          }}
+          disabled={voteChange > 0}
+        >
+          +
+        </button>
+        {err && <p className={styles.errorMsg}>{err}</p>}
       </>
     );
   };

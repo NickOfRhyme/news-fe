@@ -16,7 +16,7 @@ class App extends React.Component {
     return (
       <>
         <Header user={user} />
-        <Router>
+        <Router id="mainGrid">
           <FrontPage path="/" user={user} />
           <TopicPage path="/topics/:topic" user={user} />
           <ArticlePage path="/topics/:topic/:article_id" user={user} />

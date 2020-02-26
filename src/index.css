@@ -9,12 +9,15 @@ body {
   background-color: hsl(0, 0%, 92%);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+#mainGrid {
+  min-width: 330px;
+  max-width: fit-content;
+  margin: auto;
 }
 
-a {
+a,
+a:visited {
+  color: hsl(0, 0%, 15%);
   text-decoration: none;
   font-weight: bold;
 }
@@ -26,4 +29,5 @@ p {
 
 ul {
   list-style: none;
+  padding: 0;
 }

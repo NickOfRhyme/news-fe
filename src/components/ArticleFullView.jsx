@@ -1,5 +1,6 @@
 import React from "react";
 import VoteForm from "./VoteForm";
+import styles from "./css/ArticleFullView.module.css";
 
 function ArticleFullView(props) {
   const {
@@ -19,13 +20,15 @@ function ArticleFullView(props) {
       ? "1 comment"
       : "no comments";
 
+  const date = new Date(created_at).toUTCString();
+
   return (
-    <section>
-      <h2>{title}</h2>
-      <p>{author}</p>
-      <p>{created_at}</p>
-      <p>{body}</p>
-      <p>{commentCountMsg}</p>
+    <section className={styles.wholeArticle}>
+      <h2 className={styles.title}>{title}</h2>
+      <p className={styles.author}>{author}</p>
+      <p className={styles.date}>{date}</p>
+      <p className={styles.body}>{body}</p>
+      <p className={styles.commentCount}>{commentCountMsg}</p>
       <VoteForm article_id={article_id} votes={votes} />
     </section>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import CommentCard from "./CommentCard";
 
 function CommentList(props) {
-  const { comments, user, removeComment, voteComment } = props;
+  const { comments, user, removeComment } = props;
   return (
     <ul>
       {comments.map(comment => {

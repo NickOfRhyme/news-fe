@@ -1,6 +1,7 @@
 import React from "react";
 import DeleteCommentBtn from "./DeleteCommentBtn";
 import VoteForm from "./VoteForm";
+import styles from "./css/CommentCard.module.css";
 
 function CommentCard(props) {
   const {
@@ -20,18 +21,22 @@ function CommentCard(props) {
   const date = new Date(created_at).toUTCString();
 
   return (
-    <li>
-      <article>
-        <p>{authorMsg}</p>
-        <p>{date}</p>
-        <p>{body}</p>
-        <VoteForm votes={votes} comment_id={comment_id} />
-        {isThisUsersComment && (
-          <DeleteCommentBtn
-            comment_id={comment_id}
-            removeComment={removeComment}
-          />
-        )}
+    <li className={styles.wholeCard}>
+      <article className={styles.mainCard}>
+        <p className={styles.author}>{authorMsg}</p>
+        <p className={styles.date}>{date}</p>
+        <p className={styles.cardBody}>{body}</p>
+        <div className={styles.formContainer}>
+          <span className={styles.voteForm}>
+            <VoteForm votes={votes} comment_id={comment_id} />
+          </span>
+          {isThisUsersComment && (
+            <DeleteCommentBtn
+              comment_id={comment_id}
+              removeComment={removeComment}
+            />
+          )}
+        </div>
       </article>
     </li>
   );
