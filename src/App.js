@@ -5,6 +5,7 @@ import FrontPage from "./components/FrontPage";
 import { Router } from "@reach/router";
 import TopicPage from "./components/TopicPage";
 import ArticlePage from "./components/ArticlePage";
+import ErrorPage from "./components/ErrorPage";
 
 class App extends React.Component {
   state = {
@@ -21,6 +22,7 @@ class App extends React.Component {
           <FrontPage path="/" user={user} />
           <TopicPage path="/topics/:topic" user={user} />
           <ArticlePage path="/topics/:topic/:article_id" user={user} />
+          <ErrorPage default />
         </Router>
       </>
     );

@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "@reach/router";
 import TopicNav from "./TopicNav";
 
 const Header = () => {
   return (
     <header>
-      <h1>Breaking News</h1>
+      <h1>
+        <Link to="/">Breaking News</Link>
+      </h1>
       <TopicNav />
     </header>
   );

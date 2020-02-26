@@ -2,22 +2,26 @@ import React, { Component } from "react";
 import Sortbar from "./Sortbar";
 import ArticleList from "./ArticleList";
 import * as api from "../api";
+import ErrorPage from "./ErrorPage";
 
 class FrontPage extends Component {
   state = {
-    articles: []
+    articles: [],
+    err: null
   };
 
   render() {
-    const { articles } = this.state;
+    const { articles, err } = this.state;
     const { fetchArticles } = this;
 
-    return (
-      <main>
-        <Sortbar sortingFunc={fetchArticles} incCommentOption={true} />
-        <ArticleList articles={articles} topicHead={true} />
-      </main>
-    );
+    if (err) return <ErrorPage err={err} />;
+    else
+      return (
+        <main>
+          <Sortbar sortingFunc={fetchArticles} incCommentOption={true} />
+          <ArticleList articles={articles} topicHead={true} />
+        </main>
+      );
   }
 
   componentDidMount() {
@@ -25,9 +29,14 @@ class FrontPage extends Component {
   }
 
   fetchArticles = (sort_by, order) => {
-    api.getArticles({ sort_by, order }).then(articles => {
-      this.setState(articles);
-    });
+    api
+      .getArticles({ sort_by, order })
+      .then(articles => {
+        this.setState(articles);
+      })
+      .catch(err => {
+        this.setState({ err });
+      });
   };
 }
 
