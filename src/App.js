@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import Header from "./components/Header";
 import FrontPage from "./components/FrontPage";
 import { Router } from "@reach/router";
@@ -14,7 +13,6 @@ class App extends React.Component {
 
   render() {
     const { user } = this.state;
-
     return (
       <>
         <Header user={user} />

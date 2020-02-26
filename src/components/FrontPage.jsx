@@ -12,6 +12,7 @@ class FrontPage extends Component {
 
   render() {
     const { articles, err } = this.state;
+    const { user } = this.props;
     const { fetchArticles } = this;
 
     if (err) return <ErrorPage err={err} />;
@@ -19,7 +20,7 @@ class FrontPage extends Component {
       return (
         <main>
           <Sortbar sortingFunc={fetchArticles} incCommentOption={true} />
-          <ArticleList articles={articles} topicHead={true} />
+          <ArticleList articles={articles} topicHead={true} user={user} />
         </main>
       );
   }
@@ -28,9 +29,9 @@ class FrontPage extends Component {
     this.fetchArticles();
   }
 
-  fetchArticles = (sort_by, order) => {
+  fetchArticles = queries => {
     api
-      .getArticles({ sort_by, order })
+      .getArticles(queries)
       .then(articles => {
         this.setState(articles);
       })

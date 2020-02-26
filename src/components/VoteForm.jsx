@@ -1,34 +1,83 @@
 import React from "react";
+import * as api from "../api";
 
-function VoteForm(props) {
-  const { votes, comment_id, article_id, voteFunc } = props;
+class VoteForm extends React.Component {
+  state = {
+    voteChange: 0,
+    err: null
+  };
 
-  const voteCountMsg =
-    votes > 1 || votes < 0
-      ? `${votes} votes`
-      : votes === 1
-      ? "1 vote"
-      : "no votes";
+  render = () => {
+    const { updateVote } = this;
+    const { voteChange, err } = this.state;
+    const { votes, comment_id, article_id } = this.props;
 
-  return (
-    <>
-      <button
-        onClick={() => {
-          voteFunc(comment_id || article_id, 1);
-        }}
-      >
-        +
-      </button>
-      {voteCountMsg}
-      <button
-        onClick={() => {
-          voteFunc(comment_id || article_id, -1);
-        }}
-      >
-        -
-      </button>
-    </>
-  );
+    const voteCountMsg =
+      votes + voteChange > 1 || votes + voteChange < 0
+        ? `${votes + voteChange} votes`
+        : votes + voteChange === 1
+        ? "1 vote"
+        : "no votes";
+
+    return (
+      <>
+        <button
+          onClick={() => {
+            updateVote(comment_id, article_id, 1);
+          }}
+          disabled={voteChange > 0}
+        >
+          +
+        </button>
+        {voteCountMsg}
+        <button
+          onClick={() => {
+            updateVote(comment_id, article_id, -1);
+          }}
+          disabled={voteChange < 0}
+        >
+          -
+        </button>
+        {err && <p>{err}</p>}
+      </>
+    );
+  };
+
+  updateVote = (comment_id, article_id, increment) => {
+    this.setState(currentState => {
+      return { voteChange: currentState.voteChange + increment };
+    });
+
+    if (article_id !== undefined) {
+      api
+        .patchArticle(article_id, increment)
+        .then(() => {
+          this.setState({ err: null });
+        })
+        .catch(() => {
+          this.setState(currentState => {
+            return {
+              voteChange: currentState.voteChange - increment,
+              err: "Vote not processed!"
+            };
+          });
+        });
+    } else {
+      api
+        .patchComment(comment_id, increment)
+        .then(() => {
+          this.setState({ err: null });
+        })
+        .catch(() => {
+          this.setState(currentState => {
+            return {
+              voteChange: currentState.voteChange - increment,
+              err: "Vote not processed!"
+            };
+          });
+        });
+    }
+  };
 }
 
 export default VoteForm;

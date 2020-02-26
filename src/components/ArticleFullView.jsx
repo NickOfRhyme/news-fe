@@ -9,8 +9,7 @@ function ArticleFullView(props) {
     article_id,
     author,
     created_at,
-    comment_count,
-    voteArticle
+    comment_count
   } = props;
 
   const commentCountMsg =
@@ -27,7 +26,7 @@ function ArticleFullView(props) {
       <p>{created_at}</p>
       <p>{body}</p>
       <p>{commentCountMsg}</p>
-      <VoteForm voteFunc={voteArticle} article_id={article_id} votes={votes} />
+      <VoteForm article_id={article_id} votes={votes} />
     </section>
   );
 }

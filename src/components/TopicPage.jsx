@@ -12,7 +12,7 @@ class TopicPage extends Component {
 
   render() {
     const { fetchArticles } = this;
-    const { topic } = this.props;
+    const { topic, user } = this.props;
     const { articles, err } = this.state;
 
     if (err) return <ErrorPage err={err} />;
@@ -24,7 +24,7 @@ class TopicPage extends Component {
             incCommentOption={true}
             topic={topic}
           />
-          <ArticleList articles={articles} />
+          <ArticleList articles={articles} user={user} />
         </main>
       );
   }
@@ -35,9 +35,9 @@ class TopicPage extends Component {
     fetchArticles(topic);
   }
 
-  fetchArticles = (topic, sort_by, order) => {
+  fetchArticles = queries => {
     api
-      .getArticles({ topic, sort_by, order })
+      .getArticles(queries)
       .then(articles => {
         this.setState(articles);
       })

@@ -32,9 +32,11 @@ class Sortbar extends Component {
   componentDidUpdate = (prevProps, prevState) => {
     const { sortingFunc, topic } = this.props;
     const { sort_by, order } = this.state;
-    const { prevSort_by, prevOrder } = prevState;
+    const prevSort_by = prevState.sort_by;
+    const prevOrder = prevState.order;
+
     if (sort_by !== prevSort_by || order !== prevOrder) {
-      topic ? sortingFunc(topic, sort_by, order) : sortingFunc(sort_by, order);
+      sortingFunc({ topic, sort_by, order });
     }
   };
 }

@@ -12,7 +12,6 @@ function CommentList(props) {
             key={comment.comment_id}
             user={user}
             removeComment={removeComment}
-            voteComment={voteComment}
           />
         );
       })}

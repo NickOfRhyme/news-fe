@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import * as api from "../api";
 
 class ReplyForm extends Component {
   state = {
@@ -11,7 +10,11 @@ class ReplyForm extends Component {
       <form id="reply-form" onSubmit={this.handleSubmit}>
         <label>
           Enter you reply:
-          <textarea onChange={this.handleChange} value={this.state.value} />
+          <textarea
+            required
+            onChange={this.handleChange}
+            value={this.state.value}
+          />
         </label>
         <button type="submit">Post comment</button>
       </form>

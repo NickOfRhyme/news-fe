@@ -16,18 +16,12 @@ class ArticlePage extends Component {
   render() {
     const { comments, article, err } = this.state;
     const { article_id, user } = this.props;
-    const {
-      addComment,
-      fetchComments,
-      removeComment,
-      voteComment,
-      voteArticle
-    } = this;
+    const { addComment, fetchComments, removeComment } = this;
     if (err) return <ErrorPage err={err} />;
     else
       return (
         <main>
-          <ArticleFullView {...article} voteArticle={voteArticle} />
+          <ArticleFullView {...article} />
           <hr />
           <Sortbar sortingFunc={fetchComments} />
           <hr />
@@ -35,7 +29,6 @@ class ArticlePage extends Component {
             comments={comments}
             user={user}
             removeComment={removeComment}
-            voteComment={voteComment}
           />
           <hr />
           <ReplyForm
@@ -48,21 +41,32 @@ class ArticlePage extends Component {
   }
 
   fetchArticle = () => {
-    const { article_id } = this.props;
+    const { article_id, topic } = this.props;
     api
       .getArticle(article_id)
       .then(article => {
-        this.setState(article);
+        if (article.article.topic === topic) {
+          this.setState(article);
+        } else {
+          this.setState({
+            err: {
+              response: {
+                data: `The ${topic} topic contains no such article`,
+                status: "400"
+              }
+            }
+          });
+        }
       })
       .catch(err => {
         this.setState({ err });
       });
   };
 
-  fetchComments = (sort_by, order) => {
+  fetchComments = queries => {
     const { article_id } = this.props;
     api
-      .getComments(article_id, { sort_by, order })
+      .getComments(article_id, queries)
       .then(comments => {
         this.setState(comments);
       })
@@ -99,42 +103,6 @@ class ArticlePage extends Component {
             comments: currentState.comments.filter(comment => {
               return comment.comment_id !== comment_id;
             })
-          };
-        });
-      })
-      .catch(err => {
-        this.setState({ err });
-      });
-  };
-
-  voteComment = (comment_id, vote) => {
-    api
-      .patchComment(comment_id, vote)
-      .then(response => {
-        this.setState(currentState => {
-          return {
-            comments: currentState.comments.map(comment => {
-              if (comment.comment_id === comment_id) comment.votes += vote;
-              return comment;
-            })
-          };
-        });
-      })
-      .catch(err => {
-        this.setState({ err });
-      });
-  };
-
-  voteArticle = (article_id, vote) => {
-    api
-      .patchArticle(article_id, vote)
-      .then(response => {
-        this.setState(currentState => {
-          return {
-            article: {
-              ...currentState.article,
-              votes: currentState.article.votes + vote
-            }
           };
         });
       })
