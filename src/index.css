@@ -15,6 +15,11 @@ body {
   margin: auto;
 }
 
+.LoadingContainer {
+  display: flex;
+  justify-content: center;
+}
+
 header {
   max-width: 65em;
   margin: 0 20px;

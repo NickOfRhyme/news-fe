@@ -22,7 +22,12 @@ class ArticlePage extends Component {
     if (err) {
       return <ErrorPage err={err} />;
     }
-    if (isLoading) return <LoadingIndicator />;
+    if (isLoading)
+      return (
+        <div className="LoadingContainer">
+          <LoadingIndicator />
+        </div>
+      );
     else
       return (
         <main>
