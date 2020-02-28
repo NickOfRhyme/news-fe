@@ -5,32 +5,34 @@ import ReplyForm from "./ReplyForm";
 import * as api from "../api";
 import Sortbar from "./Sortbar";
 import ErrorPage from "./ErrorPage";
+import LoadingIndicator from "./LoadingIndicator";
 
 class ArticlePage extends Component {
   state = {
     article: {},
     comments: [],
+    isLoading: true,
     err: null
   };
 
   render() {
-    const { comments, article, err } = this.state;
+    const { comments, article, err, isLoading } = this.state;
     const { article_id, user } = this.props;
     const { addComment, fetchComments, removeComment } = this;
-    if (err) return <ErrorPage err={err} />;
+    if (err) {
+      return <ErrorPage err={err} />;
+    }
+    if (isLoading) return <LoadingIndicator />;
     else
       return (
         <main>
           <ArticleFullView {...article} />
-          <hr />
           <Sortbar sortingFunc={fetchComments} />
-          <hr />
           <CommentList
             comments={comments}
             user={user}
             removeComment={removeComment}
           />
-          <hr />
           <ReplyForm
             article_id={article_id}
             addComment={addComment}
@@ -44,9 +46,9 @@ class ArticlePage extends Component {
     const { article_id, topic } = this.props;
     api
       .getArticle(article_id)
-      .then(article => {
-        if (article.article.topic === topic) {
-          this.setState(article);
+      .then(({ article }) => {
+        if (article.topic === topic) {
+          this.setState({ article, isLoading: false });
         } else {
           this.setState({
             err: {

@@ -21,7 +21,7 @@ class VoteForm extends React.Component {
         : "no votes";
 
     return (
-      <>
+      <div>
         <button
           className={styles.button}
           onClick={() => {
@@ -42,7 +42,7 @@ class VoteForm extends React.Component {
           +
         </button>
         {err && <p className={styles.errorMsg}>{err}</p>}
-      </>
+      </div>
     );
   };
 

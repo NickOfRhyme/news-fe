@@ -1,22 +1,10 @@
 .button {
   height: 1.5em;
   width: 1.5em;
-  border: none;
   border-radius: 50%;
-  background-color: hsl(0, 0%, 100%);
-  color: black;
+
   font-size: 1em;
   font-weight: bold;
-}
-
-.button:active {
-  background-color: black;
-  color: hsl(0, 0%, 100%);
-}
-
-.button:disabled {
-  background-color: hsl(0, 0%, 50%);
-  color: hsl(0, 0%, 50%);
 }
 
 .voteCount {

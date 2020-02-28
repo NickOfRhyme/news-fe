@@ -1,0 +1,29 @@
+.LoadingIndicator {
+  width: 5em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.LoadingIndicator > * {
+  width: 20px;
+  height: 20px;
+  background: hsl(198.4, 100%, 30%);
+  border-radius: 50%;
+  position: relative;
+  animation: loading 0.2s infinite;
+  animation-direction: alternate;
+}
+
+.LoadingIndicator :nth-child(2) {
+  animation-direction: alternate-reverse;
+}
+
+@keyframes loading {
+  0% {
+    background: hsl(198.4, 100%, 20%);
+  }
+  100% {
+    background: hsl(198.4, 50%, 80%);
+  }
+}

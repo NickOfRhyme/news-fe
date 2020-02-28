@@ -3,7 +3,6 @@ import { Link } from "@reach/router";
 import TopicNav from "./TopicNav";
 
 const Header = props => {
-  console.log(props);
   return (
     <header>
       <h1>

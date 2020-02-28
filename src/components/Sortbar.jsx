@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "./css/Sortbar.module.css";
 
 class Sortbar extends Component {
   state = {
@@ -10,16 +11,21 @@ class Sortbar extends Component {
     const { handleChange } = this;
     const { incCommentOption } = this.props;
     return (
-      <form>
-        <select onChange={handleChange} id="" name="sort_by">
-          <option value="created_at">date</option>
-          {incCommentOption && <option value="comment_count">comments</option>}
-          <option value="votes">votes</option>
-        </select>
-        <select onChange={handleChange} id="" name="order">
-          <option value="desc">descending</option>
-          <option value="asc">ascending</option>
-        </select>
+      <form className={styles.mainSortbar}>
+        <label>
+          Sort by:
+          <select onChange={handleChange} id="" name="sort_by">
+            <option value="created_at">date</option>
+            {incCommentOption && (
+              <option value="comment_count">comments</option>
+            )}
+            <option value="votes">votes</option>
+          </select>
+          <select onChange={handleChange} id="" name="order">
+            <option value="desc">descending</option>
+            <option value="asc">ascending</option>
+          </select>
+        </label>
       </form>
     );
   }

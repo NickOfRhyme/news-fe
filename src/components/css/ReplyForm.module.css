@@ -1,0 +1,26 @@
+.wholeForm {
+  margin: 20px;
+  margin-top: 0;
+  background-color: hsl(198.4, 65%, 70%);
+  width: max-content;
+  border-radius: 0 10px;
+  padding: 10px;
+}
+
+.textarea {
+  display: block;
+  margin: 10px;
+  width: 35em;
+  height: 6em;
+}
+
+@media screen and (max-width: 600px) {
+  .textarea {
+    width: 20em;
+    height: 5em;
+  }
+}
+
+.label {
+  font-weight: bold;
+}

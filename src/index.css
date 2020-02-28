@@ -6,28 +6,81 @@ body {
     "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana,
     "Verdana Ref", sans-serif;
 
-  background-color: hsl(0, 0%, 92%);
+  background-color: hsl(198.4, 65%, 85%);
 }
 
-#mainGrid {
+#mainContent {
   min-width: 330px;
   max-width: fit-content;
   margin: auto;
 }
 
+header {
+  max-width: 65em;
+  margin: 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 740px) {
+  header {
+    display: block;
+  }
+}
+
+h2,
+p,
+label {
+  color: hsl(198.4, 100%, 10%);
+}
+
 a,
 a:visited {
-  color: hsl(0, 0%, 15%);
+  color: hsl(18.4, 85%, 45%);
   text-decoration: none;
   font-weight: bold;
 }
 
+a:hover {
+  color: hsl(18.4, 85%, 30%);
+}
+
+input,
+textarea {
+  background-color: hsl(198.4, 65%, 95%);
+}
+
+button {
+  height: 2em;
+  border-radius: 1em;
+  border: none;
+  background-color: hsl(198.4, 65%, 35%);
+  color: hsl(198.4, 65%, 100%);
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 5px 3px;
+}
+
+button:active {
+  color: hsl(18.4, 85%, 45%);
+}
+button:disabled {
+  cursor: default;
+  background-color: hsl(198.4, 65%, 50%);
+  color: hsl(198.4, 65%, 70%);
+  box-shadow: 0 0 0;
+}
+
 p {
-  letter-spacing: 0.005em;
   word-spacing: 0.05em;
+  line-height: 1.25em;
 }
 
 ul {
   list-style: none;
+  margin-top: 0.2em;
   padding: 0;
+  padding-bottom: 0.1em;
 }

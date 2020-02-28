@@ -4,31 +4,44 @@ import ArticleList from "./ArticleList";
 import * as api from "../api";
 import styles from "./css/TopicPage.module.css";
 import ErrorPage from "./ErrorPage";
+import PageTurner from "./PageTurner";
 
 class TopicPage extends Component {
   state = {
-    articles: [],
+    articles: [{ total_count: 0 }],
+    articleQueries: { p: 1, limit: 10 },
+    isLoading: true,
     err: null
   };
 
   render() {
     const { fetchArticles } = this;
     const { topic, user } = this.props;
-    const { articles, err } = this.state;
+    const { articles, articleQueries, isLoading, err } = this.state;
 
     if (err) return <ErrorPage err={err} />;
     else
       return (
         <>
-          <h2 className={styles.topicHead}>{topic}</h2>
-          <main className={styles.mainPage}>
-            <Sortbar
-              sortingFunc={fetchArticles}
-              incCommentOption={true}
-              topic={topic}
-            />
-            <ArticleList articles={articles} user={user} />
-          </main>
+          <PageTurner
+            limit={articleQueries.limit}
+            totalCount={articles[0].total_count}
+            fetchFunc={fetchArticles}
+            isLoading={isLoading}
+          />
+          {!isLoading && (
+            <>
+              <h2 className={styles.topicHead}>{topic}</h2>
+              <main className={styles.mainPage}>
+                <Sortbar
+                  sortingFunc={fetchArticles}
+                  incCommentOption={true}
+                  topic={topic}
+                />
+                <ArticleList articles={articles} user={user} />
+              </main>
+            </>
+          )}
         </>
       );
   }
@@ -45,11 +58,18 @@ class TopicPage extends Component {
     if (prevProps.uri !== this.props.uri) fetchArticles({ topic });
   }
 
-  fetchArticles = queries => {
+  fetchArticles = newQueries => {
+    const currQueries = this.state.articleQueries;
+    this.setState({ isLoading: true });
     api
-      .getArticles(queries)
-      .then(articles => {
-        this.setState(articles);
+      .getArticles({ ...currQueries, ...newQueries })
+      .then(({ articles }) => {
+        this.setState({
+          articles,
+          articleQueries: { ...currQueries, ...newQueries },
+          isLoading: false,
+          err: null
+        });
       })
       .catch(err => {
         this.setState({ err });

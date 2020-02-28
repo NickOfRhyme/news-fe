@@ -7,21 +7,26 @@
 }
 
 .topicHead {
-  background-color: hsl(0, 0%, 30%);
-  color: hsl(0, 0%, 90%);
-  max-width: fit-content;
+  background-color: hsl(198.4, 65%, 30%);
+  color: hsl(198.4, 65%, 90%);
+  width: fit-content;
   padding: 1px 3px;
   border-top-left-radius: 0.5em;
   border-top-right-radius: 0.5em;
+}
+
+.topicHead:hover {
+  color: hsl(198.4, 65%, 70%);
 }
 
 .mainCard {
   display: grid;
   grid-template-rows: 1em 1fr 1.4em 1.4em 1.2em;
   grid-template-columns: 40% 1fr 1fr;
-  background-color: hsl(0, 0%, 70%);
+  background-color: hsl(198.4, 65%, 70%);
   border-radius: 0 10px 10px 10px;
-  max-width: 600px;
+  max-width: 35em;
+  margin-bottom: 1em;
   padding: 0.5em;
 }
 
@@ -49,7 +54,7 @@
   align-self: center;
   padding: 2px;
   border-radius: 5px;
-  background-color: hsl(0, 0%, 90%);
+  background-color: hsl(198.4, 65%, 90%);
 }
 
 .commentCount {

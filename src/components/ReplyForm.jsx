@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "./css/ReplyForm.module.css";
 
 class ReplyForm extends Component {
   state = {
@@ -7,16 +8,23 @@ class ReplyForm extends Component {
 
   render() {
     return (
-      <form id="reply-form" onSubmit={this.handleSubmit}>
-        <label>
-          Enter you reply:
+      <form
+        id="reply-form"
+        onSubmit={this.handleSubmit}
+        className={styles.wholeForm}
+      >
+        <label className={styles.label}>
+          Enter your reply:
           <textarea
             required
             onChange={this.handleChange}
             value={this.state.value}
+            className={styles.textarea}
           />
         </label>
-        <button type="submit">Post comment</button>
+        <button type="submit" className={styles.postButton}>
+          Post comment
+        </button>
       </form>
     );
   }

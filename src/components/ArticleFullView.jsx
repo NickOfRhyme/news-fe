@@ -25,11 +25,15 @@ function ArticleFullView(props) {
   return (
     <section className={styles.wholeArticle}>
       <h2 className={styles.title}>{title}</h2>
-      <p className={styles.author}>{author}</p>
-      <p className={styles.date}>{date}</p>
-      <p className={styles.body}>{body}</p>
-      <p className={styles.commentCount}>{commentCountMsg}</p>
-      <VoteForm article_id={article_id} votes={votes} />
+      <article className={styles.mainArticle}>
+        <p className={styles.author}>{author}</p>
+        <p className={styles.date}>{date}</p>
+        <p className={styles.body}>{body}</p>
+        <span className={styles.lastLine}>
+          <p className={styles.commentCount}>{commentCountMsg}</p>
+          <VoteForm article_id={article_id} votes={votes} />
+        </span>
+      </article>
     </section>
   );
 }

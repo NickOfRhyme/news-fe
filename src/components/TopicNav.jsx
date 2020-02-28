@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { navigate } from "@reach/router";
+import styles from "./css/TopicNav.module.css";
 
 class TopicNav extends Component {
   state = {
@@ -11,19 +12,24 @@ class TopicNav extends Component {
     const { textInput } = this.state;
 
     return (
-      <nav>
-        <label>
-          Choose a topic:
-          <form onSubmit={goToTopic}>
+      <nav className={styles.mainNav}>
+        <form className={styles.navContents} onSubmit={goToTopic}>
+          <label className={styles.navLabel}>
+            Choose a topic:
+            <br />
             <input
               type="text"
               name="topic"
+              inputMode="search"
               value={textInput}
               onChange={handleTyping}
             />
-            <button>Take me there!</button>
-          </form>
-        </label>
+          </label>
+          <button className={styles.navButton}>Take me there!</button>
+        </form>
+        <p className={styles.hint}>
+          Popular topics include cooking, football and coding
+        </p>
       </nav>
     );
   }

@@ -3,15 +3,18 @@ import Sortbar from "./Sortbar";
 import ArticleList from "./ArticleList";
 import * as api from "../api";
 import ErrorPage from "./ErrorPage";
+import PageTurner from "./PageTurner";
 
 class FrontPage extends Component {
   state = {
-    articles: [],
+    articles: [{ total_count: 0 }],
+    articleQueries: { p: 1, limit: 10 },
+    isLoading: true,
     err: null
   };
 
   render() {
-    const { articles, err } = this.state;
+    const { articles, err, articleQueries, isLoading } = this.state;
     const { user } = this.props;
     const { fetchArticles } = this;
 
@@ -20,7 +23,15 @@ class FrontPage extends Component {
       return (
         <main>
           <Sortbar sortingFunc={fetchArticles} incCommentOption={true} />
-          <ArticleList articles={articles} topicHead={true} user={user} />
+          <PageTurner
+            limit={articleQueries.limit}
+            totalCount={articles[0].total_count}
+            fetchFunc={fetchArticles}
+            isLoading={isLoading}
+          />
+          {!isLoading && (
+            <ArticleList articles={articles} topicHead={true} user={user} />
+          )}
         </main>
       );
   }
@@ -29,11 +40,18 @@ class FrontPage extends Component {
     this.fetchArticles();
   }
 
-  fetchArticles = queries => {
+  fetchArticles = newQueries => {
+    const currQueries = this.state.articleQueries;
+    this.setState({ isLoading: true });
     api
-      .getArticles(queries)
-      .then(articles => {
-        this.setState(articles);
+      .getArticles({ ...currQueries, ...newQueries })
+      .then(({ articles }) => {
+        this.setState({
+          articles,
+          articleQueries: { ...currQueries, ...newQueries },
+          isLoading: false,
+          err: null
+        });
       })
       .catch(err => {
         this.setState({ err });

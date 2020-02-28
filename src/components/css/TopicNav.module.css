@@ -1,0 +1,18 @@
+.mainNav {
+  background-color: hsl(198.4, 65%, 70%);
+  margin: 10px;
+  width: fit-content;
+  padding: 10px 25px;
+  border-radius: 0px 10px;
+}
+
+.navButton {
+  margin: 5px;
+  justify-self: flex-end;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.8em;
+  color: hsl(198.4, 15%, 30%);
+}
