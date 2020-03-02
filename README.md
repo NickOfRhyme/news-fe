@@ -23,3 +23,13 @@ Topics are accessed through `/topics/:topic_name/`
 Articles are accessed through `/topics/:topic_name/:article_id` or `/topics/all/:article_id`
 
 Individual comments are not accessed directly, but displayed as part of the article page.
+
+## Installation
+
+First, make sure that you have node version 6.11.3 or higher installed.
+
+Next, clone this repository to an appropriate area on your hard drive with `git clone https://github.com/NickOfRhyme/news-fe`
+
+Type `cd news-fe` once the download is complete, and install the relevant dependencies with `npm i react @reach/router axios`
+
+Once installation is complete, you should be able to launch a local version of the site with `npm start`, which by default will open up the site on `localhost:3000`.
