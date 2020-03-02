@@ -1,12 +1,17 @@
 import React, { Component } from "react";
+import UserContext from "./contexts/UserContext";
 import styles from "./css/ReplyForm.module.css";
 
 class ReplyForm extends Component {
+  static contextType = UserContext;
+
   state = {
     value: ""
   };
 
   render() {
+    const { user } = this.context;
+
     return (
       <form
         id="reply-form"
@@ -22,7 +27,11 @@ class ReplyForm extends Component {
             className={styles.textarea}
           />
         </label>
-        <button type="submit" className={styles.postButton}>
+        <button
+          type="submit"
+          className={styles.postButton}
+          disabled={user === "Guest"}
+        >
           Post comment
         </button>
       </form>

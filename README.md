@@ -10,4 +10,16 @@ You can log in as one of several demo users, vote on comments and articles, and 
 
 ## Navigation
 
-The root page of the site is a paginated list of all the most recent articles, from which you can navigate to individual
+The root page of the site is a paginated list of all the most recent articles, from which you can navigate to individual topics or articles via links.
+
+Every page has a header containing a link back to the front page, an input box for topics, and a display of the currently logged in user (the username also functions as a link to the log in page).
+
+### URL structure
+
+The login page is at `/login`
+
+Topics are accessed through `/topics/:topic_name/`
+
+Articles are accessed through `/topics/:topic_name/:article_id` or `/topics/all/:article_id`
+
+Individual comments are not accessed directly, but displayed as part of the article page.
