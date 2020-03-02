@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import Sortbar from "./Sortbar";
 import ArticleList from "./ArticleList";
-import * as api from "../api";
-import styles from "./css/TopicPage.module.css";
 import ErrorPage from "./ErrorPage";
 import PageTurner from "./PageTurner";
+import ArticleForm from "./ArticleForm";
+import * as api from "../api";
+import styles from "./css/TopicPage.module.css";
 import UserContext from "./contexts/UserContext";
 
 class TopicPage extends Component {
@@ -18,7 +19,7 @@ class TopicPage extends Component {
   };
 
   render() {
-    const { fetchArticles } = this;
+    const { fetchArticles, addArticle } = this;
     const { topic } = this.props;
     const { articles, articleQueries, isLoading, err } = this.state;
 
@@ -42,6 +43,11 @@ class TopicPage extends Component {
                   topic={topic}
                 />
                 <ArticleList articles={articles} user={this.context.user} />
+                <ArticleForm
+                  user={this.context.user}
+                  topic={topic}
+                  addArticle={addArticle}
+                />
               </main>
             </>
           )}
@@ -73,6 +79,19 @@ class TopicPage extends Component {
           isLoading: false,
           err: null
         });
+      })
+      .catch(err => {
+        this.setState({ err });
+      });
+  };
+
+  addArticle = (author, topic, title, body) => {
+    api
+      .postArticle(author, topic, title, body)
+      .then(({ article }) => {
+        console.log("hello");
+        console.log(article);
+        this.fetchArticles();
       })
       .catch(err => {
         this.setState({ err });

@@ -22,7 +22,6 @@ class ArticlePage extends Component {
     const { comments, article, err, isLoading } = this.state;
     const { article_id } = this.props;
     const { addComment, fetchComments, removeComment } = this;
-    console.log(this.context);
 
     if (err) {
       return <ErrorPage err={err} />;

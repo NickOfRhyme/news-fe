@@ -14,6 +14,12 @@ export const getArticle = (article_id, params) => {
     .then(response => response.data);
 };
 
+export const postArticle = (author, topic, title, body) => {
+  return axios
+    .post(`${BASE_URL}articles`, { author, topic, title, body })
+    .then(response => response.data);
+};
+
 export const patchArticle = (article_id, vote) => {
   return axios
     .patch(`${BASE_URL}articles/${article_id}`, { inc_votes: vote })
