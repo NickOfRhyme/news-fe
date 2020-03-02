@@ -7,8 +7,8 @@
 }
 
 .topicHead {
-  background-color: hsl(198.4, 65%, 30%);
-  color: hsl(198.4, 65%, 90%);
+  background-color: hsl(198.4, 65%, 25%);
+  color: hsl(18.4, 65%, 60%);
   width: fit-content;
   padding: 1px 3px;
   border-top-left-radius: 0.5em;
@@ -16,7 +16,7 @@
 }
 
 .topicHead:hover {
-  color: hsl(198.4, 65%, 70%);
+  color: hsl(18.4, 65%, 90%);
 }
 
 .mainCard {

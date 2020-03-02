@@ -4,8 +4,11 @@ import ArticleList from "./ArticleList";
 import * as api from "../api";
 import ErrorPage from "./ErrorPage";
 import PageTurner from "./PageTurner";
+import UserContext from "./contexts/UserContext";
 
 class FrontPage extends Component {
+  static contextType = UserContext;
+
   state = {
     articles: [{ total_count: 0 }],
     articleQueries: { p: 1, limit: 10 },
@@ -30,7 +33,11 @@ class FrontPage extends Component {
             isLoading={isLoading}
           />
           {!isLoading && (
-            <ArticleList articles={articles} topicHead={true} user={user} />
+            <ArticleList
+              articles={articles}
+              topicHead={true}
+              user={this.context}
+            />
           )}
         </main>
       );

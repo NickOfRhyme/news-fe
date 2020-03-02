@@ -1,0 +1,17 @@
+.confirmBox {
+  position: fixed;
+  z-index: 1;
+  height: fit-content;
+  width: 250px;
+  background-color: #d5ecf6;
+  border: 2px solid #1b607e;
+  border-radius: 5px;
+  padding: 10px;
+  top: calc(50% - 55px);
+  left: calc(50% - 135px);
+}
+
+.confirmBox > * {
+  text-align: center;
+  margin: 10px;
+}

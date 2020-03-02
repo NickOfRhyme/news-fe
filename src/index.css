@@ -10,7 +10,7 @@ body {
 }
 
 #mainContent {
-  min-width: 330px;
+  min-width: 320px;
   max-width: fit-content;
   margin: auto;
 }
@@ -21,16 +21,23 @@ body {
 }
 
 header {
-  max-width: 65em;
-  margin: 0 20px;
+  margin: 0 50px;
   display: flex;
   justify-content: space-between;
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 801px) {
   header {
     display: block;
+    margin: 0;
   }
+  h1 {
+    text-align: center;
+  }
+}
+
+h1 {
+  font-family: "Lucida Bright", "Palatino", Georgia, serif;
 }
 
 h2,

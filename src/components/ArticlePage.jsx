@@ -6,8 +6,11 @@ import * as api from "../api";
 import Sortbar from "./Sortbar";
 import ErrorPage from "./ErrorPage";
 import LoadingIndicator from "./LoadingIndicator";
+import UserContext from "./contexts/UserContext";
 
 class ArticlePage extends Component {
+  static contextType = UserContext;
+
   state = {
     article: {},
     comments: [],
@@ -15,10 +18,11 @@ class ArticlePage extends Component {
     err: null
   };
 
-  render() {
+  render = () => {
     const { comments, article, err, isLoading } = this.state;
-    const { article_id, user } = this.props;
+    const { article_id } = this.props;
     const { addComment, fetchComments, removeComment } = this;
+
     if (err) {
       return <ErrorPage err={err} />;
     }
@@ -35,17 +39,17 @@ class ArticlePage extends Component {
           <Sortbar sortingFunc={fetchComments} />
           <CommentList
             comments={comments}
-            user={user}
+            user={this.context}
             removeComment={removeComment}
           />
           <ReplyForm
             article_id={article_id}
             addComment={addComment}
-            user={user}
+            user={this.context}
           />
         </main>
       );
-  }
+  };
 
   fetchArticle = () => {
     const { article_id, topic } = this.props;

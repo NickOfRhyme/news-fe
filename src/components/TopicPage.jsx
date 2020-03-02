@@ -5,8 +5,11 @@ import * as api from "../api";
 import styles from "./css/TopicPage.module.css";
 import ErrorPage from "./ErrorPage";
 import PageTurner from "./PageTurner";
+import UserContext from "./contexts/UserContext";
 
 class TopicPage extends Component {
+  static contextType = UserContext;
+
   state = {
     articles: [{ total_count: 0 }],
     articleQueries: { p: 1, limit: 10 },
@@ -16,7 +19,7 @@ class TopicPage extends Component {
 
   render() {
     const { fetchArticles } = this;
-    const { topic, user } = this.props;
+    const { topic } = this.props;
     const { articles, articleQueries, isLoading, err } = this.state;
 
     if (err) return <ErrorPage err={err} />;
@@ -38,7 +41,7 @@ class TopicPage extends Component {
                   incCommentOption={true}
                   topic={topic}
                 />
-                <ArticleList articles={articles} user={user} />
+                <ArticleList articles={articles} user={this.context} />
               </main>
             </>
           )}
