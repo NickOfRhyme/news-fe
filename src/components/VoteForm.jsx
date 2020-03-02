@@ -1,8 +1,11 @@
 import React from "react";
 import * as api from "../api";
+import UserContext from "./contexts/UserContext";
 import styles from "./css/VoteForm.module.css";
 
 class VoteForm extends React.Component {
+  static contextType = UserContext;
+
   state = {
     voteChange: 0,
     err: null
@@ -10,6 +13,7 @@ class VoteForm extends React.Component {
 
   render = () => {
     const { updateVote } = this;
+    const { user } = this.context;
     const { voteChange, err } = this.state;
     const { votes, comment_id, article_id } = this.props;
 
@@ -27,7 +31,7 @@ class VoteForm extends React.Component {
           onClick={() => {
             updateVote(comment_id, article_id, -1);
           }}
-          disabled={voteChange < 0}
+          disabled={voteChange < 0 || user === "Guest"}
         >
           -
         </button>
@@ -37,7 +41,7 @@ class VoteForm extends React.Component {
           onClick={() => {
             updateVote(comment_id, article_id, 1);
           }}
-          disabled={voteChange > 0}
+          disabled={voteChange > 0 || user === "Guest"}
         >
           +
         </button>
