@@ -1,6 +1,5 @@
 import React from "react";
 import ArticleCard from "./ArticleCard";
-import UserContext from "./contexts/UserContext";
 
 const ArticleList = props => {
   const { articles, topicHead, voteArticle, user } = props;

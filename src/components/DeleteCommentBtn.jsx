@@ -10,9 +10,11 @@ class DeleteCommentBtn extends React.Component {
     const { showingConfirmBox } = this.state;
     return showingConfirmBox ? (
       <aside className={styles.confirmBox}>
-        Are you sure?
-        <button onClick={deleteComment}>Yes, delete my comment</button>
-        <button onClick={cancelDelete}>Cancel</button>
+        <p className={styles.prompt}>Are you sure?</p>
+        <div className={styles.options}>
+          <button onClick={deleteComment}>Yes, delete my comment</button>
+          <button onClick={cancelDelete}>Cancel</button>
+        </div>
       </aside>
     ) : (
       <button onClick={showConfirmBox}>Delete comment</button>

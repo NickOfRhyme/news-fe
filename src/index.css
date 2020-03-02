@@ -26,13 +26,26 @@ header {
   justify-content: space-between;
 }
 
+header h1 {
+  margin-bottom: 0;
+}
+
+header .logInMessage {
+  margin: 0;
+}
+
 @media screen and (max-width: 801px) {
   header {
     display: block;
     margin: 0;
   }
-  h1 {
+  header h1,
+  header .logInMessage {
     text-align: center;
+  }
+
+  header .logInMessage {
+    margin-bottom: 4px;
   }
 }
 

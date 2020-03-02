@@ -22,6 +22,7 @@ class ArticlePage extends Component {
     const { comments, article, err, isLoading } = this.state;
     const { article_id } = this.props;
     const { addComment, fetchComments, removeComment } = this;
+    console.log(this.context);
 
     if (err) {
       return <ErrorPage err={err} />;
@@ -39,13 +40,13 @@ class ArticlePage extends Component {
           <Sortbar sortingFunc={fetchComments} />
           <CommentList
             comments={comments}
-            user={this.context}
+            user={this.context.user}
             removeComment={removeComment}
           />
           <ReplyForm
             article_id={article_id}
             addComment={addComment}
-            user={this.context}
+            user={this.context.user}
           />
         </main>
       );
@@ -56,7 +57,7 @@ class ArticlePage extends Component {
     api
       .getArticle(article_id)
       .then(({ article }) => {
-        if (article.topic === topic) {
+        if (article.topic === topic || topic === "all") {
           this.setState({ article, isLoading: false });
         } else {
           this.setState({

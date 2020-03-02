@@ -41,7 +41,7 @@ class TopicPage extends Component {
                   incCommentOption={true}
                   topic={topic}
                 />
-                <ArticleList articles={articles} user={this.context} />
+                <ArticleList articles={articles} user={this.context.user} />
               </main>
             </>
           )}

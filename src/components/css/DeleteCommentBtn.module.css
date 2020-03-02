@@ -2,16 +2,20 @@
   position: fixed;
   z-index: 1;
   height: fit-content;
-  width: 250px;
-  background-color: #d5ecf6;
-  border: 2px solid #1b607e;
-  border-radius: 5px;
+  width: 260px;
+  background-color: hsl(198.4, 65%, 70%);
+  border: 2px solid #d5ecf6;
+  border-radius: 0px 10px;
   padding: 10px;
   top: calc(50% - 55px);
   left: calc(50% - 135px);
 }
 
-.confirmBox > * {
+.prompt {
   text-align: center;
-  margin: 10px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-evenly;
 }

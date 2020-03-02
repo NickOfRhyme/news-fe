@@ -18,7 +18,6 @@ class FrontPage extends Component {
 
   render() {
     const { articles, err, articleQueries, isLoading } = this.state;
-    const { user } = this.props;
     const { fetchArticles } = this;
 
     if (err) return <ErrorPage err={err} />;
@@ -36,7 +35,7 @@ class FrontPage extends Component {
             <ArticleList
               articles={articles}
               topicHead={true}
-              user={this.context}
+              user={this.context.user}
             />
           )}
         </main>
