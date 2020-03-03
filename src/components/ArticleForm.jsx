@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "./css/ArticleForm.module.css";
 
 class ArticleForm extends Component {
   state = {
@@ -9,24 +10,38 @@ class ArticleForm extends Component {
   render() {
     const { handleChange, handleSubmit } = this;
     const { title, body } = this.state;
+    const { user } = this.props;
+    const isGuest = user === "Guest";
     return (
-      <form onSubmit={handleSubmit}>
-        <label>
-          Title:
-          <input
-            onChange={handleChange}
-            type="text"
-            name="title"
-            value={title}
-            required
-          />
-        </label>
-        <label>
-          Content:
-          <textarea onChange={handleChange} name="body" value={body} required />
-        </label>
-        <button>Post new article</button>
-      </form>
+      <>
+        <h3 className={styles.formHead}>Add new article</h3>
+        <form onSubmit={handleSubmit} className={styles.wholeForm}>
+          <label className={styles.label}>
+            Title:
+            <input
+              onChange={handleChange}
+              type="text"
+              name="title"
+              value={title}
+              className={styles.textinput}
+              disabled={isGuest}
+              required
+            />
+          </label>
+          <label className={styles.label}>
+            Content:
+            <textarea
+              onChange={handleChange}
+              name="body"
+              value={isGuest ? "Guests may not add new articles" : body}
+              className={styles.textarea}
+              disabled={isGuest}
+              required
+            />
+          </label>
+          <button disabled={isGuest}>Post new article</button>
+        </form>
+      </>
     );
   }
 

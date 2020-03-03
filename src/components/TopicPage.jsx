@@ -88,9 +88,7 @@ class TopicPage extends Component {
   addArticle = (author, topic, title, body) => {
     api
       .postArticle(author, topic, title, body)
-      .then(({ article }) => {
-        console.log("hello");
-        console.log(article);
+      .then(() => {
         this.fetchArticles();
       })
       .catch(err => {

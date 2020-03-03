@@ -64,10 +64,12 @@ a:visited {
   color: hsl(18.4, 85%, 45%);
   text-decoration: none;
   font-weight: bold;
+  width: fit-content;
 }
 
 a:hover {
   color: hsl(18.4, 85%, 30%);
+  width: fit-content;
 }
 
 input,

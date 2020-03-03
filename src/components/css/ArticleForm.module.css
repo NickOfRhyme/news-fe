@@ -1,0 +1,41 @@
+.formHead {
+  background-color: hsl(198.4, 65%, 70%);
+  color: hsl(198.4, 65%, 20%);
+  max-width: fit-content;
+  margin: 20px;
+  margin-bottom: 0;
+  padding: 1px 3px;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+.wholeForm {
+  margin: 20px;
+  margin-top: 0;
+  background-color: hsl(198.4, 65%, 70%);
+  width: max-content;
+  border-radius: 0 10px;
+  padding: 10px;
+}
+
+.textarea {
+  display: block;
+  margin: 10px;
+  margin-top: 0;
+  width: 35em;
+  height: 6em;
+}
+
+@media screen and (max-width: 600px) {
+  .textarea {
+    width: 20em;
+    height: 5em;
+  }
+}
+
+.label {
+  font-weight: bold;
+  display: block;
+  margin: 3px;
+  margin-bottom: 0;
+}
