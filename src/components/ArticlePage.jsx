@@ -23,6 +23,8 @@ class ArticlePage extends Component {
     const { article_id } = this.props;
     const { addComment, fetchComments, removeComment } = this;
 
+    console.log(article);
+
     if (err) {
       return <ErrorPage err={err} />;
     }
@@ -69,19 +71,19 @@ class ArticlePage extends Component {
           });
         }
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({ err });
       });
   };
 
-  fetchComments = queries => {
+  fetchComments = (queries) => {
     const { article_id } = this.props;
     api
       .getComments(article_id, queries)
-      .then(comments => {
+      .then((comments) => {
         this.setState(comments);
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({ err });
       });
   };
@@ -90,7 +92,7 @@ class ArticlePage extends Component {
     api
       .postComment(article_id, username, body)
       .then(({ comment }) => {
-        this.setState(currentState => {
+        this.setState((currentState) => {
           return {
             comments: [...currentState.comments, comment],
             article: {
@@ -100,24 +102,24 @@ class ArticlePage extends Component {
           };
         });
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({ err });
       });
   };
 
-  removeComment = comment_id => {
+  removeComment = (comment_id) => {
     api
       .deleteComment(comment_id)
-      .then(response => {
-        this.setState(currentState => {
+      .then((response) => {
+        this.setState((currentState) => {
           return {
-            comments: currentState.comments.filter(comment => {
+            comments: currentState.comments.filter((comment) => {
               return comment.comment_id !== comment_id;
             })
           };
         });
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({ err });
       });
   };

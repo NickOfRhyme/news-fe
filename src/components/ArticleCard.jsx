@@ -21,9 +21,9 @@ function ArticleCard(props) {
   const authorMsg = isThisUsersArticle ? `YOU - ${user}` : author;
 
   const commentCountMsg =
-    comment_count > 1
-      ? `${comment_count} comments`
-      : comment_count === 1
+    +comment_count > 1
+      ? `${+comment_count} comments`
+      : +comment_count === 1
       ? "1 comment"
       : "no comments";
 

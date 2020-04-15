@@ -14,9 +14,9 @@ function ArticleFullView(props) {
   } = props;
 
   const commentCountMsg =
-    comment_count > 1
-      ? `${comment_count} comments`
-      : comment_count === 1
+    +comment_count > 1
+      ? `${+comment_count} comments`
+      : +comment_count === 1
       ? "1 comment"
       : "no comments";
 
