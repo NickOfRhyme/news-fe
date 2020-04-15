@@ -67,7 +67,7 @@ class TopicPage extends Component {
     if (prevProps.uri !== this.props.uri) fetchArticles({ topic });
   }
 
-  fetchArticles = newQueries => {
+  fetchArticles = (newQueries) => {
     const currQueries = this.state.articleQueries;
     this.setState({ isLoading: true });
     api
@@ -80,7 +80,7 @@ class TopicPage extends Component {
           err: null
         });
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({ err });
       });
   };
@@ -91,7 +91,7 @@ class TopicPage extends Component {
       .then(() => {
         this.fetchArticles();
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({ err });
       });
   };
