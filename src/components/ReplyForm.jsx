@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import UserContext from "./contexts/UserContext";
+import { UserContext } from "./contexts/UserContext";
 import styles from "./css/ReplyForm.module.css";
 
 class ReplyForm extends Component {
@@ -38,12 +38,12 @@ class ReplyForm extends Component {
     );
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     const value = event.target.value;
     this.setState({ value });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     const body = this.state.value;
     const { article_id, addComment, user } = this.props;

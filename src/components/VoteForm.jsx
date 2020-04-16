@@ -1,6 +1,6 @@
 import React from "react";
 import * as api from "../api";
-import UserContext from "./contexts/UserContext";
+import { UserContext } from "./contexts/UserContext";
 import styles from "./css/VoteForm.module.css";
 
 class VoteForm extends React.Component {
@@ -51,7 +51,7 @@ class VoteForm extends React.Component {
   };
 
   updateVote = (comment_id, article_id, increment) => {
-    this.setState(currentState => {
+    this.setState((currentState) => {
       return { voteChange: currentState.voteChange + increment };
     });
 
@@ -62,7 +62,7 @@ class VoteForm extends React.Component {
           this.setState({ err: null });
         })
         .catch(() => {
-          this.setState(currentState => {
+          this.setState((currentState) => {
             return {
               voteChange: currentState.voteChange - increment,
               err: "Vote not processed!"
@@ -76,7 +76,7 @@ class VoteForm extends React.Component {
           this.setState({ err: null });
         })
         .catch(() => {
-          this.setState(currentState => {
+          this.setState((currentState) => {
             return {
               voteChange: currentState.voteChange - increment,
               err: "Vote not processed!"

@@ -6,7 +6,7 @@ import PageTurner from "./PageTurner";
 import ArticleForm from "./ArticleForm";
 import * as api from "../api";
 import styles from "./css/TopicPage.module.css";
-import UserContext from "./contexts/UserContext";
+import { UserContext } from "./contexts/UserContext";
 
 class TopicPage extends Component {
   static contextType = UserContext;

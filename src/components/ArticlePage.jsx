@@ -6,7 +6,7 @@ import * as api from "../api";
 import Sortbar from "./Sortbar";
 import ErrorPage from "./ErrorPage";
 import LoadingIndicator from "./LoadingIndicator";
-import UserContext from "./contexts/UserContext";
+import { UserContext } from "./contexts/UserContext";
 
 class ArticlePage extends Component {
   static contextType = UserContext;

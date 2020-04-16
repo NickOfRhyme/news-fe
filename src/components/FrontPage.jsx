@@ -4,7 +4,7 @@ import ArticleList from "./ArticleList";
 import * as api from "../api";
 import ErrorPage from "./ErrorPage";
 import PageTurner from "./PageTurner";
-import UserContext from "./contexts/UserContext";
+import { UserContext } from "./contexts/UserContext";
 
 class FrontPage extends Component {
   static contextType = UserContext;
@@ -46,7 +46,7 @@ class FrontPage extends Component {
     this.fetchArticles();
   }
 
-  fetchArticles = newQueries => {
+  fetchArticles = (newQueries) => {
     const currQueries = this.state.articleQueries;
     this.setState({ isLoading: true });
     api
@@ -59,7 +59,7 @@ class FrontPage extends Component {
           err: null
         });
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({ err });
       });
   };

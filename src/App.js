@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "./components/Header";
 import FrontPage from "./components/FrontPage";
-import { Router, Redirect } from "@reach/router";
+import { Router } from "@reach/router";
 import TopicPage from "./components/TopicPage";
 import ArticlePage from "./components/ArticlePage";
 import ErrorPage from "./components/ErrorPage";
 import LoginPage from "./components/LoginPage";
-import UserContext from "./components/contexts/UserContext";
+import { UserProvider } from "./components/contexts/UserContext";
 
 function App() {
-  const [user, changeUser] = useState("Guest");
-
   return (
-    <UserContext.Provider value={{ user, changeUser }}>
+    <UserProvider>
       <Header />
       <Router id="mainContent">
         <FrontPage path="/" />
@@ -21,7 +19,7 @@ function App() {
         <ArticlePage path="/topics/:topic/:article_id" />
         <ErrorPage default />
       </Router>
-    </UserContext.Provider>
+    </UserProvider>
   );
 }
 

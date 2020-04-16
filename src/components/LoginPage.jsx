@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { navigate } from "@reach/router";
-import UserContext from "./contexts/UserContext";
+import { UserContext } from "./contexts/UserContext";
 import styles from "./css/LoginPage.module.css";
 
 class LoginPage extends Component {
@@ -42,11 +42,11 @@ class LoginPage extends Component {
     );
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({ userValue: e.target.value });
   };
 
-  login = e => {
+  login = (e) => {
     const { changeUser } = this.context;
     const { userValue, validUsers } = this.state;
     e.preventDefault();
