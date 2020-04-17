@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "@reach/router";
 import { UserContext } from "./contexts/UserContext";
 import TopicNav from "./TopicNav";
 
 const Header = (props) => {
-  const user = React.useContext(UserContext).user;
+  const { user } = useContext(UserContext);
   return (
     <header>
       <div>
