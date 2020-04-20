@@ -1,45 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./css/PageTurner.module.css";
 import LoadingIndicator from "./LoadingIndicator";
 
-class PageTurner extends React.Component {
-  state = {
-    p: 1
+const PageTurner = (props) => {
+  const [p, setP] = useState(1);
+
+  const changePage = (direction) => {
+    const { limit, fetchFunc } = props;
+    fetchFunc({ p: p + direction, limit });
+    setP(p + direction);
   };
 
-  render() {
-    const { p } = this.state;
-    const { limit, totalCount, isLoading } = this.props;
-    const lastP = Math.ceil(totalCount / limit);
-    return (
-      <div className={styles.PageTurner}>
-        <button onClick={() => this.changePage(-1)} disabled={p === 1}>
-          &#x2190;
-        </button>
+  const { limit, totalCount, isLoading } = props;
+  const finalP = Math.ceil(totalCount / limit);
+  return (
+    <div className={styles.PageTurner}>
+      <button onClick={() => changePage(-1)} disabled={p === 1}>
+        &#x2190;
+      </button>
 
-        {isLoading ? (
-          <LoadingIndicator />
-        ) : (
-          <p>
-            {" "}
-            Page {p} of {lastP}
-          </p>
-        )}
-        <button onClick={() => this.changePage(1)} disabled={p === lastP}>
-          &#x2192;
-        </button>
-      </div>
-    );
-  }
-
-  changePage(direction) {
-    const { limit, fetchFunc } = this.props;
-    const { p } = this.state;
-    fetchFunc({ p: p + direction, limit });
-    this.setState(currentState => {
-      return { p: currentState.p + direction };
-    });
-  }
-}
+      {isLoading ? (
+        <LoadingIndicator />
+      ) : (
+        <p>
+          {" "}
+          Page {p} of {finalP}
+        </p>
+      )}
+      <button onClick={() => changePage(1)} disabled={p === finalP}>
+        &#x2192;
+      </button>
+    </div>
+  );
+};
 
 export default PageTurner;
