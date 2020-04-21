@@ -27,6 +27,11 @@ class TopicPage extends Component {
     else
       return (
         <>
+          <Sortbar
+            sortingFunc={fetchArticles}
+            incCommentOption={true}
+            topic={topic}
+          />
           <PageTurner
             limit={articleQueries.limit}
             totalCount={articles[0].total_count}
@@ -37,11 +42,6 @@ class TopicPage extends Component {
             <>
               <h2 className={styles.topicHead}>{topic}</h2>
               <main className={styles.mainPage}>
-                <Sortbar
-                  sortingFunc={fetchArticles}
-                  incCommentOption={true}
-                  topic={topic}
-                />
                 <ArticleList articles={articles} user={this.context.user} />
                 <ArticleForm
                   user={this.context.user}
@@ -64,7 +64,9 @@ class TopicPage extends Component {
   componentDidUpdate(prevProps) {
     const { fetchArticles } = this;
     const { topic } = this.props;
-    if (prevProps.uri !== this.props.uri) fetchArticles({ topic });
+    if (prevProps.uri !== this.props.uri) {
+      fetchArticles({ topic });
+    }
   }
 
   fetchArticles = (newQueries) => {

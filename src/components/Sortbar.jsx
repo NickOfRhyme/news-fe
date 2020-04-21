@@ -5,10 +5,14 @@ const Sortbar = ({ incCommentOption, sortingFunc, topic }) => {
   const [sort_by, setSort] = useState("created_at");
   const [order, setOrder] = useState("desc");
 
-  useEffect(() => sortingFunc({ topic, order, sort_by }), [order, sort_by]);
+  useEffect(() => {
+    // sortingFunc({ topic, order, sort_by });
+    console.log(topic, order, sort_by);
+  }, [order, sort_by]);
 
   const handleChange = (event) => {
     const { value, name } = event.target;
+    console.log(value, name);
     if (name === "sort_by") setSort(value);
     if (name === "order") setOrder(value);
   };
