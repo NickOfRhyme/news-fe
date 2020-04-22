@@ -1,37 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./css/DeleteCommentBtn.module.css";
 
-class DeleteCommentBtn extends React.Component {
-  state = {
-    showingConfirmBox: false
-  };
-  render() {
-    const { showConfirmBox, deleteComment, cancelDelete } = this;
-    const { showingConfirmBox } = this.state;
-    return showingConfirmBox ? (
-      <aside className={styles.confirmBox}>
-        <p className={styles.prompt}>Are you sure?</p>
-        <div className={styles.options}>
-          <button onClick={deleteComment}>Yes, delete my comment</button>
-          <button onClick={cancelDelete}>Cancel</button>
-        </div>
-      </aside>
-    ) : (
-      <button onClick={showConfirmBox}>Delete comment</button>
-    );
-  }
+const DeleteCommentBtn = ({ removeComment, comment_id }) => {
+  const [confirmBoxShowing, setConfirmBoxShowing] = useState(false);
 
-  showConfirmBox = () => {
-    this.setState({ showingConfirmBox: true });
+  const showConfirmBox = () => {
+    setConfirmBoxShowing(true);
   };
 
-  deleteComment = () => {
-    const { removeComment, comment_id } = this.props;
+  const deleteComment = () => {
     removeComment(comment_id);
   };
 
-  cancelDelete = () => {
-    this.setState({ showingConfirmBox: false });
+  const cancelDelete = () => {
+    setConfirmBoxShowing(false);
   };
-}
+
+  return confirmBoxShowing ? (
+    <aside className={styles.confirmBox}>
+      <p className={styles.prompt}>Are you sure?</p>
+      <div className={styles.options}>
+        <button onClick={deleteComment}>Yes, delete my comment</button>
+        <button onClick={cancelDelete}>Cancel</button>
+      </div>
+    </aside>
+  ) : (
+    <button onClick={showConfirmBox}>Delete comment</button>
+  );
+};
 export default DeleteCommentBtn;

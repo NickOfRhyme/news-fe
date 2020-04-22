@@ -6,8 +6,7 @@ const Sortbar = ({ incCommentOption, sortingFunc, topic }) => {
   const [order, setOrder] = useState("desc");
 
   useEffect(() => {
-    // sortingFunc({ topic, order, sort_by });
-    console.log(topic, order, sort_by);
+    sortingFunc({ topic, order, sort_by });
   }, [order, sort_by]);
 
   const handleChange = (event) => {
