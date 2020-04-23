@@ -1,0 +1,22 @@
+.loginForm {
+  margin: 2em;
+  text-align: center;
+  align-items: center;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 0 10px;
+  background-color: hsl(198.4, 70%, 70%);
+}
+
+.loginButton {
+  margin: 1em;
+}
+
+.loginInfo {
+  font-size: 0.8em;
+}
+
+.loginError {
+  color: red;
+}

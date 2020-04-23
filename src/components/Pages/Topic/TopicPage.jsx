@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Sortbar from "./Sortbar";
-import ArticleList from "./ArticleList";
-import ErrorPage from "./ErrorPage";
-import PageTurner from "./PageTurner";
+import Sortbar from "../../Sortbar";
+import ArticleList from "../../ArticleList";
+import ErrorPage from "../Error/ErrorPage";
+import PageTurner from "../../PageTurner";
 import ArticleForm from "./ArticleForm";
-import * as api from "../api";
+import * as api from "../../../api";
 import styles from "./css/TopicPage.module.css";
-import { UserContext } from "./contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 
 class TopicPage extends Component {
   static contextType = UserContext;

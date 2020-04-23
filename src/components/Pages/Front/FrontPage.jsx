@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Sortbar from "./Sortbar";
-import ArticleList from "./ArticleList";
-import * as api from "../api";
-import ErrorPage from "./ErrorPage";
-import PageTurner from "./PageTurner";
-import { UserContext } from "./contexts/UserContext";
+import Sortbar from "../../Sortbar";
+import ArticleList from "../../ArticleList";
+import * as api from "../../../api";
+import ErrorPage from "../Error/ErrorPage";
+import PageTurner from "../../PageTurner";
+import { UserContext } from "../../contexts/UserContext";
 
 class FrontPage extends Component {
   static contextType = UserContext;

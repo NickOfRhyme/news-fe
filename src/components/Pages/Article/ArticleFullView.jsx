@@ -1,5 +1,5 @@
 import React from "react";
-import VoteForm from "./VoteForm";
+import VoteForm from "../../VoteForm";
 import styles from "./css/ArticleFullView.module.css";
 
 function ArticleFullView(props) {

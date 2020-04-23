@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import ArticleFullView from "./ArticleFullView";
-import CommentList from "./CommentList";
+import CommentList from "../../CommentList";
 import ReplyForm from "./ReplyForm";
-import * as api from "../api";
-import Sortbar from "./Sortbar";
-import ErrorPage from "./ErrorPage";
-import LoadingIndicator from "./LoadingIndicator";
-import { UserContext } from "./contexts/UserContext";
+import * as api from "../../../api";
+import Sortbar from "../../Sortbar";
+import ErrorPage from "../Error/ErrorPage";
+import LoadingIndicator from "../../LoadingIndicator";
+import { UserContext } from "../../contexts/UserContext";
 
 class ArticlePage extends Component {
   static contextType = UserContext;

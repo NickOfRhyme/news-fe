@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { navigate } from "@reach/router";
-import { UserContext } from "./contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 import styles from "./css/LoginPage.module.css";
 
 class LoginPage extends Component {
