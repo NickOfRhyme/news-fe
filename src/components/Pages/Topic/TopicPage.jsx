@@ -7,6 +7,7 @@ import ArticleForm from "./ArticleForm";
 import * as api from "../../../api";
 import styles from "./css/TopicPage.module.css";
 import { UserContext } from "../../contexts/UserContext";
+import NewTopicPage from "../NewTopic/NewTopicPage";
 
 class TopicPage extends Component {
   static contextType = UserContext;
@@ -23,8 +24,13 @@ class TopicPage extends Component {
     const { topic } = this.props;
     const { articles, articleQueries, isLoading, err } = this.state;
 
-    if (err) return <ErrorPage err={err} />;
-    else
+    if (err) {
+      return err.response.status === 400 ? (
+        <NewTopicPage topic={topic} />
+      ) : (
+        <ErrorPage err={err} />
+      );
+    } else {
       return (
         <>
           <Sortbar
@@ -53,6 +59,7 @@ class TopicPage extends Component {
           )}
         </>
       );
+    }
   }
 
   componentDidMount() {
