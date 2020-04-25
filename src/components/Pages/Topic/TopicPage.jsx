@@ -33,17 +33,21 @@ class TopicPage extends Component {
     } else {
       return (
         <>
-          <Sortbar
-            sortingFunc={fetchArticles}
-            incCommentOption={true}
-            topic={topic}
-          />
-          <PageTurner
-            limit={articleQueries.limit}
-            totalCount={articles[0].total_count}
-            fetchFunc={fetchArticles}
-            isLoading={isLoading}
-          />
+          {articles.length > 0 && (
+            <>
+              <Sortbar
+                sortingFunc={fetchArticles}
+                incCommentOption={true}
+                topic={topic}
+              />
+              <PageTurner
+                limit={articleQueries.limit}
+                totalCount={articles[0].total_count}
+                fetchFunc={fetchArticles}
+                isLoading={isLoading}
+              />
+            </>
+          )}
           {!isLoading && (
             <>
               <h2 className={styles.topicHead}>{topic}</h2>
