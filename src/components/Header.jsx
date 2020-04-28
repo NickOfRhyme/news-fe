@@ -12,7 +12,10 @@ const Header = (props) => {
           <Link to="/">Breaking News</Link>
         </h1>
         <p className="logInMessage">
-          Logged in as <Link to="/login">{user}</Link>
+          Logged in as{" "}
+          <Link to="/login" state={{ returnAfterLogin: true }}>
+            {user}
+          </Link>
         </p>
       </div>
       <TopicNav />

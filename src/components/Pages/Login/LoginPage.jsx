@@ -35,7 +35,7 @@ class LoginPage extends Component {
         <button className={styles.loginButton}>Login</button>
         <p className={styles.loginInfo}>
           You can log in as the following demo users: weegembump, happyamy2016,
-          jessjelly, grumpy19, tickle122, cooljmessy and Guest.
+          jessjelly, grumpy19, tickle122 and cooljmessy.
         </p>
         {invalidLogin && <p className={styles.loginError}>User not found.</p>}
       </form>
@@ -48,11 +48,16 @@ class LoginPage extends Component {
 
   login = (e) => {
     const { changeUser } = this.context;
+    const { returnAfterLogin } = this.props.location.state;
     const { userValue, validUsers } = this.state;
     e.preventDefault();
     if (validUsers.includes(userValue)) {
       changeUser(userValue);
-      navigate("/");
+      if (returnAfterLogin) {
+        navigate(-1);
+      } else {
+        navigate("/");
+      }
     } else {
       this.setState({ invalidLogin: true, userValue: "" });
     }

@@ -26,7 +26,10 @@ class TopicPage extends Component {
 
     if (err) {
       return err.response.status === 400 ? (
-        <NewTopicPage topic={topic} />
+        <NewTopicPage
+          topic={topic}
+          fetchArticles={() => fetchArticles(articleQueries)}
+        />
       ) : (
         <ErrorPage err={err} />
       );
