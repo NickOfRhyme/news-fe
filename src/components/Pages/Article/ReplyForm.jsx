@@ -27,6 +27,7 @@ const ReplyForm = (props) => {
           onChange={handleChange}
           value={value}
           className={styles.textarea}
+          disabled={user === null}
         />
       </label>
       <button

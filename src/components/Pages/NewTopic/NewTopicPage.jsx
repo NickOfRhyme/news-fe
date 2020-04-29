@@ -33,8 +33,8 @@ function NewTopicPage({ topic, fetchArticles }) {
   if (err) return <ErrorPage err={err} />;
   else if (user === null) {
     return (
-      <div>
-        <p>
+      <div className={styles.topicForm}>
+        <p className={styles.topicCreationPrompt}>
           The topic '{topic}' does not exist. Why not{" "}
           <Link to="/login" state={{ returnAfterLogin: true }}>
             log in
@@ -45,23 +45,25 @@ function NewTopicPage({ topic, fetchArticles }) {
     );
   } else {
     return (
-      <div>
-        <p>The topic '{topic}' does not exist. Why not create it?</p>
-        <form className={styles.topicForm} onSubmit={handleSubmit}>
-          <label>
-            Write a short description of the topic:
-            <input
-              type="text"
-              name="description"
-              value={description}
-              onChange={handleChange}
-            />
-          </label>
-          <button className={styles.submitButton} disabled={!description}>
-            Create topic
-          </button>
-        </form>
-      </div>
+      <form className={styles.topicForm} onSubmit={handleSubmit}>
+        <p className={styles.topicCreationPrompt}>
+          The topic '{topic}' does not exist. Why not create it?
+        </p>
+        <label>
+          Topic description:
+          <textarea
+            name="description"
+            value={description}
+            maxLength={75}
+            onChange={handleChange}
+            className={styles.descriptionInput}
+          />
+        </label>
+        <p className={styles.descriptionLengthMessage}>
+          {description.length} / 75 characters
+        </p>
+        <button disabled={!description}>Create topic</button>
+      </form>
     );
   }
 }

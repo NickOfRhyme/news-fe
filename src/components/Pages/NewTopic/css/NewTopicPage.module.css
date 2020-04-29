@@ -1,0 +1,31 @@
+.topicForm {
+  margin: 2em;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 0 10px;
+  background-color: hsl(198.4, 70%, 70%);
+}
+
+.topicForm .topicCreationPrompt {
+  text-align: center;
+}
+
+.topicForm > label {
+  color: hsl(198.4, 65%, 20%);
+  font-weight: bold;
+}
+
+.topicForm > button {
+  margin: 0.5em;
+}
+
+.topicForm .descriptionInput {
+  display: block;
+  width: 25em;
+}
+
+.topicForm .descriptionLengthMessage {
+  font-size: 0.8em;
+  color: hsl(198.4, 65%, 20%);
+}
