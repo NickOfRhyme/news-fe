@@ -31,7 +31,7 @@ function NewTopicPage({ topic, fetchArticles }) {
   };
 
   if (err) return <ErrorPage err={err} />;
-  else if (user === "Guest") {
+  else if (user === null) {
     return (
       <div>
         <p>

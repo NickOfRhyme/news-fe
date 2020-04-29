@@ -32,7 +32,7 @@ const ReplyForm = (props) => {
       <button
         type="submit"
         className={styles.postButton}
-        disabled={user === "Guest"}
+        disabled={user === null}
       >
         Post comment
       </button>

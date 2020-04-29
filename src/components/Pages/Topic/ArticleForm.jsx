@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./css/ArticleForm.module.css";
 
 const ArticleForm = ({ user, topic, addArticle }) => {
-  const isGuest = user === "Guest";
+  const isGuest = user === null;
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 

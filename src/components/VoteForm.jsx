@@ -48,7 +48,7 @@ const VoteForm = ({ votes, comment_id, article_id }) => {
         onClick={() => {
           updateVote(comment_id, article_id, -1);
         }}
-        disabled={voteChange < 0 || user === "Guest"}
+        disabled={voteChange < 0 || user === null}
       >
         -
       </button>
@@ -58,7 +58,7 @@ const VoteForm = ({ votes, comment_id, article_id }) => {
         onClick={() => {
           updateVote(comment_id, article_id, 1);
         }}
-        disabled={voteChange > 0 || user === "Guest"}
+        disabled={voteChange > 0 || user === null}
       >
         +
       </button>
