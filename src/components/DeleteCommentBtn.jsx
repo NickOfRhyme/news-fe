@@ -17,13 +17,16 @@ const DeleteCommentBtn = ({ removeComment, comment_id }) => {
   };
 
   return confirmBoxShowing ? (
-    <aside className={styles.confirmBox}>
-      <p className={styles.prompt}>Are you sure?</p>
-      <div className={styles.options}>
-        <button onClick={deleteComment}>Yes, delete my comment</button>
-        <button onClick={cancelDelete}>Cancel</button>
-      </div>
-    </aside>
+    <>
+      <aside className={styles.confirmBox}>
+        <p className={styles.prompt}>Are you sure?</p>
+        <div className={styles.options}>
+          <button onClick={deleteComment}>Yes, delete my comment</button>
+          <button onClick={cancelDelete}>Cancel</button>
+        </div>
+      </aside>
+      <button disabled>Delete comment</button>
+    </>
   ) : (
     <button onClick={showConfirmBox}>Delete comment</button>
   );
