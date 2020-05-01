@@ -20,6 +20,12 @@ export const postArticle = (author, topic, title, body) => {
     .then((response) => response.data);
 };
 
+export const deleteArticle = (article_id) => {
+  return axios
+    .delete(`${BASE_URL}articles/${article_id}`)
+    .then((response) => response.data);
+};
+
 export const patchArticle = (article_id, vote) => {
   return axios
     .patch(`${BASE_URL}articles/${article_id}`, { inc_votes: vote })

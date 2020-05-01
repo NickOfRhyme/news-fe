@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import styles from "./css/DeleteBtn.module.css";
 
-const DeleteCommentBtn = ({ removeComment, comment_id }) => {
+const DeleteArticleBtn = ({ removeArticle, article_id }) => {
   const [confirmBoxShowing, setConfirmBoxShowing] = useState(false);
 
   const showConfirmBox = () => {
     setConfirmBoxShowing(true);
   };
 
-  const deleteComment = () => {
-    removeComment(comment_id);
+  const deleteArticle = () => {
+    removeArticle(article_id);
   };
 
   const cancelDelete = () => {
@@ -21,14 +21,14 @@ const DeleteCommentBtn = ({ removeComment, comment_id }) => {
       <aside className={styles.confirmBox}>
         <p className={styles.prompt}>Are you sure?</p>
         <div className={styles.options}>
-          <button onClick={deleteComment}>Yes, delete my comment</button>
+          <button onClick={deleteArticle}>Yes, delete my article</button>
           <button onClick={cancelDelete}>Cancel</button>
         </div>
       </aside>
-      <button disabled>Delete comment</button>
+      <button disabled>Delete article</button>
     </>
   ) : (
-    <button onClick={showConfirmBox}>Delete comment</button>
+    <button onClick={showConfirmBox}>Delete article</button>
   );
 };
-export default DeleteCommentBtn;
+export default DeleteArticleBtn;

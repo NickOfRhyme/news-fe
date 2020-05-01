@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "@reach/router";
+import DeleteArticleBtn from "./DeleteArticleBtn";
 import styles from "./css/ArticleCard.module.css";
 
 function ArticleCard(props) {
@@ -13,7 +14,8 @@ function ArticleCard(props) {
     topic,
     preview,
     votes,
-    topicHead
+    topicHead,
+    removeArticle
   } = props;
 
   const isThisUsersArticle = user === author;
@@ -49,6 +51,13 @@ function ArticleCard(props) {
         <p className={styles.cardBody}>{preview}</p>
         <p className={styles.commentCount}>{commentCountMsg}</p>
         <p className={styles.voteCount}>{voteCountMsg}</p>
+        {isThisUsersArticle && +comment_count === 0 && (
+          <DeleteArticleBtn
+            className={styles.deleteButton}
+            removeArticle={removeArticle}
+            article_id={article_id}
+          />
+        )}
       </article>
     </li>
   );

@@ -18,7 +18,7 @@ class FrontPage extends Component {
 
   render() {
     const { articles, err, articleQueries, isLoading } = this.state;
-    const { fetchArticles } = this;
+    const { fetchArticles, removeArticle } = this;
 
     if (err) return <ErrorPage err={err} />;
     else
@@ -36,6 +36,7 @@ class FrontPage extends Component {
               articles={articles}
               topicHead={true}
               user={this.context.user}
+              removeArticle={removeArticle}
             />
           )}
         </main>
@@ -57,6 +58,23 @@ class FrontPage extends Component {
           articleQueries: { ...currQueries, ...newQueries },
           isLoading: false,
           err: null
+        });
+      })
+      .catch((err) => {
+        this.setState({ err });
+      });
+  };
+
+  removeArticle = (article_id) => {
+    api
+      .deleteArticle(article_id)
+      .then((response) => {
+        this.setState((currentState) => {
+          return {
+            articles: currentState.articles.filter((article) => {
+              return article.article_id !== article_id;
+            })
+          };
         });
       })
       .catch((err) => {
