@@ -61,3 +61,9 @@ export const postTopic = (author, slug, description) => {
     .post(`${BASE_URL}topics`, { author, slug, description })
     .then((response) => response.data);
 };
+
+export const getUser = (username) => {
+  return axios
+    .get(`${BASE_URL}users/${username}`)
+    .then((response) => response.data);
+};
